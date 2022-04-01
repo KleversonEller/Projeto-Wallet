@@ -1,11 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import fetchApi from '../service/fetchApi';
-import { getExpenses } from '../actions';
 
 class Table extends React.Component {
   render() {
+    const { expenses } = this.props;
     return (
       <table>
         <thead>
@@ -39,9 +38,49 @@ class Table extends React.Component {
             </th>
           </tr>
         </thead>
+        <tbody>
+          {expenses.map((objeto) => (
+            <tr key={ objeto.id }>
+              <td>
+                { objeto.description }
+              </td>
+              <td>
+                { objeto.tag }
+              </td>
+              <td>
+                { objeto.method }
+              </td>
+              <td>
+                { `${objeto.value}.00` }
+              </td>
+              <td>
+                { Object.values(objeto.exchangeRates)
+                  .find((moeda) => moeda.code === objeto.currency).name.split('/')[0] }
+              </td>
+              <td>
+                {+(+(Object.values(objeto.exchangeRates)
+                  .find((moeda) => moeda.code === objeto.currency).ask)).toFixed(2)}
+              </td>
+              <td>
+                { +(+objeto.value * +(Object.values(objeto.exchangeRates)
+                  .find((moeda) => moeda.code === objeto.currency).ask)).toFixed(2) }
+              </td>
+              <td>
+                Real
+              </td>
+            </tr>))}
+        </tbody>
       </table>
     );
   }
 }
 
-export default Table;
+const mapStateToProps = (state) => ({
+  expenses: state.wallet.expenses,
+});
+
+Table.propTypes = {
+  expenses: PropTypes.objectOf(PropTypes.string),
+}.isRequired;
+
+export default connect(mapStateToProps)(Table);

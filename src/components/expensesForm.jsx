@@ -67,7 +67,7 @@ class Expenses extends React.Component {
             name="value"
             data-testid="value-input"
             id="valor"
-            type="number"
+            type="text"
             value={ value }
           />
         </label>
