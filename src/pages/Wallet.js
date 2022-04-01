@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { thunkGetCurrencies } from '../actions';
 import Header from '../components/header';
+import Expenses from '../components/expensesForm';
 
 class Wallet extends React.Component {
   componentDidMount() {
@@ -12,9 +13,14 @@ class Wallet extends React.Component {
 
   render() {
     return (
-      <header>
-        <Header />
-      </header>
+      <>
+        <header>
+          <Header />
+        </header>
+        <article>
+          <Expenses />
+        </article>
+      </>
     );
   }
 }
