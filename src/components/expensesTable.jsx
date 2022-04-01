@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Delete from './deleteBtn';
 
 class Table extends React.Component {
   render() {
@@ -67,6 +68,9 @@ class Table extends React.Component {
               </td>
               <td>
                 Real
+              </td>
+              <td>
+                <Delete id={ objeto.id } />
               </td>
             </tr>))}
         </tbody>

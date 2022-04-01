@@ -31,8 +31,8 @@ class Expenses extends React.Component {
     const getApi = await fetchApi();
     const { saveExpenses } = this.props;
     const { id, value, description, currency, method, tag } = this.state;
-    this.setState((prev) => ({
-      expenses: [...prev.expenses, {
+    this.setState(({
+      expenses: {
         id,
         value,
         description,
@@ -40,7 +40,7 @@ class Expenses extends React.Component {
         method,
         tag,
         exchangeRates: getApi,
-      }],
+      },
     }), () => {
       const { expenses } = this.state;
       saveExpenses(expenses);

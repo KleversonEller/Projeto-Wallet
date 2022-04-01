@@ -5,6 +5,7 @@ export const VALID_EMAIL = 'VALID_EMAIL';
 export const CURRENCIES = 'CURRENCIES';
 export const CURRENCIES_FAIL = 'CURRENCIES_FAIL';
 export const EXPENSES = 'EXPENSES';
+export const DELETE = 'DELETE';
 
 export const getUser = (payload) => ({ type: VALID_EMAIL, payload });
 
@@ -21,3 +22,5 @@ export const thunkGetCurrencies = () => async (dispatch) => {
     dispatch(getCurrenciesFail(error));
   }
 };
+
+export const deleteEvent = (payload) => ({ type: DELETE, payload });
