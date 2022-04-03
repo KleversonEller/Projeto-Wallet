@@ -86,6 +86,7 @@ class Expenses extends React.Component {
           Moeda
           <select
             onChange={ this.handleInput }
+            data-testid="currency-input"
             name="currency"
             id="moeda"
             value={ currency }

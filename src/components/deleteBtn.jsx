@@ -17,14 +17,24 @@ class Delete extends React.Component {
   render() {
     const { id } = this.props;
     return (
-      <button
-        data-testid="delete-btn"
-        onClick={ this.deleteClick }
-        name={ id }
-        type="button"
-      >
-        X
-      </button>
+      <>
+        <button
+          data-testid="edit-btn"
+          onClick={ this.deleteClick }
+          name={ id }
+          type="button"
+        >
+          Editar despesa
+        </button>
+        <button
+          data-testid="delete-btn"
+          onClick={ this.deleteClick }
+          name={ id }
+          type="button"
+        >
+          X
+        </button>
+      </>
     );
   }
 }
