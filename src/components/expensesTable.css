@@ -1,0 +1,22 @@
+table {
+  text-align: center;
+  width: 100%;
+}
+
+th , td {
+  width: 100px;
+}
+
+td {
+  padding: 8px;
+}
+
+thead {
+  background-color: black;
+  color: #ffc709;
+}
+
+tbody {
+  color: white;
+  font-size: medium;
+}

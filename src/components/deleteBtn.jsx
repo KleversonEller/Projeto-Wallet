@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { deleteEvent } from '../actions';
+import './deleteBtn.css';
 
 class Delete extends React.Component {
   constructor() {
@@ -19,6 +20,7 @@ class Delete extends React.Component {
     return (
       <>
         <button
+          className="edit-btn"
           data-testid="edit-btn"
           onClick={ this.deleteClick }
           name={ id }
@@ -27,6 +29,7 @@ class Delete extends React.Component {
           Editar despesa
         </button>
         <button
+          className="delete-btn"
           data-testid="delete-btn"
           onClick={ this.deleteClick }
           name={ id }

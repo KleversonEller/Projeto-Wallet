@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { getUser } from '../actions';
+import './Login.css';
 
 class Login extends React.Component {
   constructor() {
@@ -43,11 +44,11 @@ class Login extends React.Component {
     const { redirect } = this.state;
     return (
       <>
-        <form>
+        <form className="form-container">
           <h2> Login </h2>
           <label htmlFor="email">
-            E-mail:
             <input
+              placeholder="E-mail"
               onChange={ this.handleInput }
               name="email"
               data-testid="email-input"
@@ -55,9 +56,10 @@ class Login extends React.Component {
               type="text"
             />
           </label>
+          <br />
           <label htmlFor="senha">
-            Senha:
             <input
+              placeholder="Senha"
               onChange={ this.handleInput }
               name="senha"
               data-testid="password-input"
@@ -65,7 +67,9 @@ class Login extends React.Component {
               type="password"
             />
           </label>
+          <br />
           <button
+            className="btn-login"
             onClick={ this.saveEmail }
             disabled={ !this.validBtn() }
             type="button"

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import fetchApi from '../service/fetchApi';
 import { getExpenses } from '../actions';
+import './expensesForm.css';
 
 const valorTag = 'Alimentação';
 
@@ -59,9 +60,10 @@ class Expenses extends React.Component {
     const { moedas } = this.props;
     const { value, description, currency, method, tag } = this.state;
     return (
-      <form>
+      <form className="expense-form-container">
         <label htmlFor="valor">
           Valor da despesa:
+          <br />
           <input
             onChange={ this.handleInput }
             name="value"
@@ -73,6 +75,7 @@ class Expenses extends React.Component {
         </label>
         <label htmlFor="descricao">
           Descrição da despesa:
+          <br />
           <input
             onChange={ this.handleInput }
             name="description"
@@ -83,7 +86,8 @@ class Expenses extends React.Component {
           />
         </label>
         <label htmlFor="moeda">
-          Moeda
+          Moeda:
+          <br />
           <select
             onChange={ this.handleInput }
             data-testid="currency-input"
@@ -103,7 +107,8 @@ class Expenses extends React.Component {
         <label
           htmlFor="pagamento"
         >
-          Método de pagamento
+          Método de pagamento:
+          <br />
           <select
             onChange={ this.handleInput }
             data-testid="method-input"
@@ -117,7 +122,8 @@ class Expenses extends React.Component {
           </select>
         </label>
         <label htmlFor="categoria">
-          Categoria
+          Categoria:
+          <br />
           <select
             onChange={ this.handleInput }
             data-testid="tag-input"
@@ -133,6 +139,7 @@ class Expenses extends React.Component {
           </select>
         </label>
         <button
+          className="expense-btn"
           onClick={ this.addExchange }
           type="button"
         >

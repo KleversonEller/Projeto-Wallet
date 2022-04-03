@@ -1,0 +1,17 @@
+.form-container {
+  align-items: center;
+  background-color: #999;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 250px;
+  justify-content: space-evenly;
+  margin: 200px auto;
+  width: 500px;
+}
+
+.btn-login {
+  font-size: medium;
+  height: 40px;
+  width: 150px;
+}

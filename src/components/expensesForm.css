@@ -1,0 +1,15 @@
+.expense-form-container {
+  align-items: center;
+  background-color: #999;
+  display: flex;
+  font-size: large;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.expense-btn {
+  align-self: flex-end;
+  font-size: medium;
+  height: 40px;
+  width: 150px;
+}
