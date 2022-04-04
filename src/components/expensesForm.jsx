@@ -56,7 +56,7 @@ class Expenses extends React.Component {
       currency,
       method,
       tag,
-      exchangeRates: getApi,
+      exchangeRates: editar ? despesaEditar.exchangeRates : getApi,
     });
     this.setState((prev) => ({
       id: editar ? prev.id : prev.id + 1,
@@ -129,7 +129,7 @@ class Expenses extends React.Component {
             id="pagamento"
             value={ method }
           >
-            <option value="dinheiro">Dinheiro</option>
+            <option value="Dinheiro">Dinheiro</option>
             <option value="Cartão de crédito">Cartão de crédito</option>
             <option value="Cartão de débito">Cartão de débito</option>
           </select>

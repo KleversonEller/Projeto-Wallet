@@ -43,8 +43,8 @@ class Table extends React.Component {
                   .split('/')[0] }
               </td>
               <td>
-                {+(+(Object.values(objeto.exchangeRates)
-                  .find((moeda) => moeda.code === objeto.currency).ask)).toFixed(2)}
+                {Number(Object.values(objeto.exchangeRates)
+                  .find((moeda) => moeda.code === objeto.currency).ask).toFixed(2)}
               </td>
               <td>
                 { +(+objeto.value * +(Object.values(objeto.exchangeRates)
