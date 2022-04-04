@@ -17,7 +17,6 @@ class Expenses extends React.Component {
       currency: 'USD',
       method: 'Dinheiro',
       tag: valorTag,
-      exchangeRates: '',
     };
 
     this.handleInput = this.handleInput.bind(this);
@@ -28,14 +27,16 @@ class Expenses extends React.Component {
     const { idEdit, editar, despesas } = this.props;
     const despesaEditar = despesas.find((despesa) => despesa.id === +idEdit);
 
+    this.setState({
+      id: despesas.length > 0 ? despesas.length : 0,
+    });
+
     return editar && this.setState({
-      id: despesaEditar.id,
       value: despesaEditar.value,
       description: despesaEditar.description,
       currency: despesaEditar.currency,
       method: despesaEditar.method,
       tag: despesaEditar.tag,
-      exchangeRates: despesaEditar.exchangeRates,
     });
   }
 
@@ -45,19 +46,20 @@ class Expenses extends React.Component {
 
   async addExchange() {
     const getApi = await fetchApi();
-    const { saveExpenses, editar, func } = this.props;
-    const { id, value, description, currency, method, tag, exchangeRates } = this.state;
+    const { saveExpenses, editar, func, despesas, idEdit } = this.props;
+    const { id, value, description, currency, method, tag } = this.state;
+    const despesaEditar = despesas.find((despesa) => despesa.id === +idEdit);
     saveExpenses({
-      id,
+      id: editar ? despesaEditar.id : id,
       value,
       description,
       currency,
       method,
       tag,
-      exchangeRates: editar ? exchangeRates : getApi,
+      exchangeRates: getApi,
     });
     this.setState((prev) => ({
-      id: prev.id + 1,
+      id: editar ? prev.id : prev.id + 1,
       value: '',
       description: '',
       currency: 'USD',
