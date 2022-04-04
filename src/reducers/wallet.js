@@ -15,7 +15,11 @@ function wallet(state = INITIAL_STATE, action) {
     return { ...state, currenciesFail: action.payload };
   case EXPENSES:
     return { ...state,
-      expenses: [...state.expenses, action.payload] };
+      expenses: state.expenses.some((comparador) => comparador.id === action.payload.id)
+        ? state.expenses.map((despesa) => (despesa.id === action.payload.id
+          ? action.payload
+          : despesa))
+        : [...state.expenses, action.payload] };
   case DELETE:
     return { ...state,
       expenses: state.expenses.filter((despesa) => despesa.id !== +action.payload) };

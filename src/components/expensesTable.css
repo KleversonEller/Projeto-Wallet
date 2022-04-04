@@ -20,3 +20,8 @@ tbody {
   color: white;
   font-size: medium;
 }
+
+.edit-btn {
+  background-color: blue;
+  width: 100px;
+}

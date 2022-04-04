@@ -17,11 +17,26 @@ class Expenses extends React.Component {
       currency: 'USD',
       method: 'Dinheiro',
       tag: valorTag,
-      expenses: [],
+      exchangeRates: '',
     };
 
     this.handleInput = this.handleInput.bind(this);
     this.addExchange = this.addExchange.bind(this);
+  }
+
+  componentDidMount() {
+    const { idEdit, editar, despesas } = this.props;
+    const despesaEditar = despesas.find((despesa) => despesa.id === +idEdit);
+
+    return editar && this.setState({
+      id: despesaEditar.id,
+      value: despesaEditar.value,
+      description: despesaEditar.description,
+      currency: despesaEditar.currency,
+      method: despesaEditar.method,
+      tag: despesaEditar.tag,
+      exchangeRates: despesaEditar.exchangeRates,
+    });
   }
 
   handleInput(event) {
@@ -30,34 +45,30 @@ class Expenses extends React.Component {
 
   async addExchange() {
     const getApi = await fetchApi();
-    const { saveExpenses } = this.props;
-    const { id, value, description, currency, method, tag } = this.state;
-    this.setState(({
-      expenses: {
-        id,
-        value,
-        description,
-        currency,
-        method,
-        tag,
-        exchangeRates: getApi,
-      },
-    }), () => {
-      const { expenses } = this.state;
-      saveExpenses(expenses);
-      this.setState((prev) => ({
-        id: prev.id + 1,
-        value: '',
-        description: '',
-        currency: 'USD',
-        method: 'Dinheiro',
-        tag: valorTag,
-      }));
+    const { saveExpenses, editar, func } = this.props;
+    const { id, value, description, currency, method, tag, exchangeRates } = this.state;
+    saveExpenses({
+      id,
+      value,
+      description,
+      currency,
+      method,
+      tag,
+      exchangeRates: editar ? exchangeRates : getApi,
     });
+    this.setState((prev) => ({
+      id: prev.id + 1,
+      value: '',
+      description: '',
+      currency: 'USD',
+      method: 'Dinheiro',
+      tag: valorTag,
+    }));
+    return editar && func();
   }
 
   render() {
-    const { moedas } = this.props;
+    const { moedas, editar } = this.props;
     const { value, description, currency, method, tag } = this.state;
     return (
       <form className="expense-form-container">
@@ -138,13 +149,24 @@ class Expenses extends React.Component {
             <option value="Saude">Saúde</option>
           </select>
         </label>
-        <button
-          className="expense-btn"
-          onClick={ this.addExchange }
-          type="button"
-        >
-          Adicionar despesa
-        </button>
+        {editar
+          ? (
+            <button
+              className="edit-btn"
+              data-testid="edit-btn"
+              onClick={ this.addExchange }
+              type="button"
+            >
+              Editar despesa
+            </button>)
+          : (
+            <button
+              className="expense-btn"
+              onClick={ this.addExchange }
+              type="button"
+            >
+              Adicionar despesa
+            </button>)}
       </form>
     );
   }
@@ -152,6 +174,7 @@ class Expenses extends React.Component {
 
 const mapStateToProps = (state) => ({
   moedas: state.wallet.currencies,
+  despesas: state.wallet.expenses,
 });
 
 const mapDispatchToProps = (dispatch) => ({
