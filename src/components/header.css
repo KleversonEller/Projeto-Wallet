@@ -4,7 +4,8 @@
   color: white;
   display: flex;
   height: 50px;
-  justify-content: flex-end;
+  justify-content: space-between;
+  padding-left: 50px;
   padding-right: 50px;
 }
 
