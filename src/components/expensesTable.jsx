@@ -12,7 +12,7 @@ class Table extends React.Component {
         <thead>
           <tr>
             <th> Descrição </th>
-            <th> Tag </th>
+            <th> Categoria </th>
             <th> Método de pagamento </th>
             <th> Valor </th>
             <th> Moeda </th>
