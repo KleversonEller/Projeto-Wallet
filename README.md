@@ -72,7 +72,7 @@ O valor total é a soma de todas as despesas com seu valor ja convertido para a 
 ## Técnologias usadas
 
 Front-end:
-> Desenvolvido usando: React, CSS3, HTML5, JavaScript ES6, React Redux, React Router, API externa.
+> Desenvolvido usando: React, CSS3, JavaScript ES6, React Redux, React Router, API externa.
 
 ## Instalando Dependências
 
